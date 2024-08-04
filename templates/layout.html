@@ -1,0 +1,140 @@
+{% load static tailwind_tags%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {%tailwind_css%}
+    <title>{% block title %} CHWEET {% endblock %}</title>
+  </head>
+  <body>
+    <header class="bg-white lg:py-auto lg:fixed lg:w-full">
+      <div class="px-4 mx-auto max-w-full sm:px-6 lg:px-8">
+        <!-- lg+ -->
+        <nav
+          class="relative flex items-center justify-between h-16 bg-white lg:rounded-md lg:shadow-lg lg:h-24 lg:px-8 lg:py-6"
+        >
+          <div class="flex-shrink-0">
+            <a
+              href="{% url 'tweet_list' %}"
+              title=""
+              class="flex font-bold text-2xl text-blue-700"
+            >
+              CH
+              <p class="content-end font-bold text-lg text-black">WEET</p>
+            </a>
+          </div>
+
+          <button
+            type="button"
+            class="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100"
+          >
+            <svg
+              class="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+
+            <!-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg> -->
+          </button>
+
+          <div
+            class="hidden ml-10 lg:flex lg:items-center lg:mr-auto lg:space-x-10"
+          >
+            <a
+              href="{% url 'tweet_list' %}"
+              title=""
+              class="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+            >
+              Home
+            </a>
+            {% if request.user.is_authenticated %}
+            <a
+              href="{% url 'tweet_create' %}"
+              title=""
+              class="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+            >
+              Create new tweet </a
+            >{% endif %}
+          </div>
+
+          <div class="hidden lg:flex lg:items-center lg:space-x-10">
+            {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button
+                class="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+              >
+                Logout
+              </button>
+            </form>
+            {% else %}
+            <a
+              href="{% url 'register_user' %}"
+              title=""
+              class="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+            >
+              Sign up
+            </a>
+            <a
+              href="{% url 'login' %}"
+              title=""
+              class="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+            >
+              Sign in
+            </a>
+            {% endif %}
+          </div>
+        </nav>
+
+        <!-- xs to lg -->
+        <nav class="flex flex-col py-4 space-y-2 lg:hidden">
+          <a
+            href="#"
+            title=""
+            class="py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"
+          >
+            Features
+          </a>
+
+          <a
+            href="#"
+            title=""
+            class="py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"
+          >
+            Solutions
+          </a>
+
+          <a
+            href="#"
+            title=""
+            class="py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"
+          >
+            Resources
+          </a>
+
+          <a
+            href="#"
+            title=""
+            class="py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"
+          >
+            Pricing
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="pt-40">{% block content %}{% endblock %}</div>
+  </body>
+</html>
