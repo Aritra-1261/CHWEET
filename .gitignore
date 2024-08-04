@@ -1,7 +1,7 @@
 venv/
 media/
 node/
-_pycache_/
+__pycache__
 .env
 .DS_Store
 db.sqlite3
