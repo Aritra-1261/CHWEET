@@ -36,7 +36,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'theme',
 ]
 TAILWIND_APP_NAME = 'theme' # This is the name of the app that will be used to generate the tailwind files
-INTERNAL_IPS = ['*']
+INTERNAL_IPS = ['127.0.0.1']
 NPM_BIN_PATH = r"C:/Program Files/nodejs/npm.cmd"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
