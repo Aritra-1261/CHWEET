@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'cloudinary_storage',
+    'cloudinary',
     "tweet",
     'tailwind',
     'django_browser_reload',
@@ -102,6 +104,7 @@ DATABASES = {
 }
 
 DATABASES['default']=dburl.parse(env('DATABASE_URL'))
+POSTGRES_LOCALLY=True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -134,7 +137,16 @@ USE_I18N = True
 USE_TZ = True
 # media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if ENVIRONMENT=='production' or POSTGRES_LOCALLY==True:
+    DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env('CLOUD_NAME'),
+    'API_KEY': env('CLOUD_API_KEY'),
+    'API_SECRET': env('CLOUD_API_SECRET')
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
