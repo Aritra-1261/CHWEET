@@ -11,12 +11,12 @@
   </head>
   <body>
     <header class="bg-white lg:py-auto lg:fixed lg:w-full">
-      <div class="px-4 mx-auto max-w-full sm:px-6 lg:px-8">
+      <div class="px-0 mx-auto max-w-full sm:px-0 lg:px-8">
         <!-- lg+ -->
         <nav
           class="relative flex items-center justify-between h-16 bg-white lg:rounded-md lg:shadow-lg lg:h-24 lg:px-8 lg:py-6"
         >
-          <div class="flex-shrink-0">
+          <div class="flex-shrink-0 px-4">
             <a
               href="{% url 'tweet_list' %}"
               title=""
@@ -29,6 +29,7 @@
 
           <button
             type="button"
+            onclick="hamburger_action()"
             class="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100"
           >
             <svg
@@ -101,7 +102,10 @@
         </nav>
 
         <!-- xs to lg -->
-        <nav class="flex flex-col py-4 space-y-2 lg:hidden">
+        <nav
+          id="hamburger"
+          class="hidden flex-col w-full px-4 py-4 space-y-2 bg-gray-200 fixed lg:hidden"
+        >
           <a
             href="{% url 'tweet_list' %}"
             title=""
@@ -145,6 +149,16 @@
       </div>
     </header>
 
-    <div class="pt-40">{% block content %}{% endblock %}</div>
+    <div class="lg:pt-40">{% block content %}{% endblock %}</div>
   </body>
+  <script>
+    function hamburger_action() {
+      var x = document.getElementById("hamburger");
+      if (x.style.display === "flex") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "flex";
+      }
+    }
+  </script>
 </html>
