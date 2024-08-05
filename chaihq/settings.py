@@ -35,8 +35,7 @@ if ENVIRONMENT == 'development':
     DEBUG = True
 else:
     DEBUG = False
-
-ALLOWED_HOSTS = ['chweet.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1','chweet.onrender.com']
 
 
 # Application definition
@@ -52,11 +51,11 @@ INSTALLED_APPS = [
     'cloudinary',
     "tweet",
     'tailwind',
-    'django_browser_reload',
     'theme',
+    'django_browser_reload',
 ]
 TAILWIND_APP_NAME = 'theme' # This is the name of the app that will be used to generate the tailwind files
-INTERNAL_IPS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1','*']
 NPM_BIN_PATH = r"C:/Program Files/nodejs/npm.cmd"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
