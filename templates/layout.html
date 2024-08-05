@@ -4,9 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {%tailwind_css%} {% comment %}
+    {%tailwind_css%}
     <script src="https://cdn.tailwindcss.com"></script>
-    {% endcomment %}
     <title>{% block title %} CHWEET {% endblock %}</title>
   </head>
   <body>
@@ -14,6 +13,7 @@
       <div class="px-0 mx-auto max-w-full sm:px-0 lg:px-8">
         <!-- lg+ -->
         <nav
+          style="z-index: 1000"
           class="relative flex items-center justify-between h-16 bg-white lg:rounded-md lg:shadow-lg lg:h-24 lg:px-8 lg:py-6"
         >
           <div class="flex-shrink-0 px-4">
@@ -104,6 +104,7 @@
         <!-- xs to lg -->
         <nav
           id="hamburger"
+          style="z-index: 1000"
           class="hidden flex-col w-full px-4 py-4 space-y-2 bg-gray-200 fixed lg:hidden"
         >
           <a
@@ -149,7 +150,9 @@
       </div>
     </header>
 
-    <div class="lg:pt-40">{% block content %}{% endblock %}</div>
+    <div style="z-index: 10" class="lg:pt-40">
+      {% block content %}{% endblock %}
+    </div>
   </body>
   <script>
     function hamburger_action() {
