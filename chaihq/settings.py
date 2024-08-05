@@ -93,6 +93,7 @@ WSGI_APPLICATION = "chaihq.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 POSTGRES_LOCALLY=env('POSTGRES_LOCALLY')
 
+
 if ENVIRONMENT == 'development' or POSTGRES_LOCALLY==True:
     DATABASES = {
     "default": {
@@ -104,7 +105,7 @@ if ENVIRONMENT == 'development' or POSTGRES_LOCALLY==True:
     }
 }
 else:
-    DATABASES['default']=dburl.parse(env('DATABASE_URL'))
+    DATABASES={"default":dburl.parse(env('DATABASE_URL'))}
 
 
 # Password validation
