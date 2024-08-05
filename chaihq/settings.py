@@ -91,8 +91,10 @@ WSGI_APPLICATION = "chaihq.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+POSTGRES_LOCALLY=env('POSTGRES_LOCALLY')
 
-DATABASES = {
+if ENVIRONMENT == 'development' or POSTGRES_LOCALLY==True:
+    DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": 'ChweetDB',
@@ -101,9 +103,9 @@ DATABASES = {
         "HOST": 'localhost',
     }
 }
+else:
+    DATABASES['default']=dburl.parse(env('DATABASE_URL'))
 
-DATABASES['default']=dburl.parse(env('DATABASE_URL'))
-POSTGRES_LOCALLY=True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
