@@ -9,7 +9,7 @@
     <title>{% block title %} CHWEET {% endblock %}</title>
   </head>
   <body>
-    <header class="bg-white lg:py-auto lg:fixed lg:w-full">
+    <header class="z-50 bg-white lg:py-auto lg:fixed lg:w-full">
       <div class="px-0 mx-auto max-w-full sm:px-0 lg:px-8">
         <!-- lg+ -->
         <nav
@@ -150,9 +150,7 @@
       </div>
     </header>
 
-    <div style="z-index: 10" class="lg:pt-40">
-      {% block content %}{% endblock %}
-    </div>
+    <div class="lg:pt-40">{% block content %}{% endblock %}</div>
   </body>
   <script>
     function hamburger_action() {
